@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
+import com.spring.security.common.utils.VerifyUtils;
 import com.spring.security.dao.primary.SysMenuPermissionViewDao;
 import com.spring.security.entity.primary.SysMenuPermissionView;
 
@@ -34,9 +36,11 @@ public class CustomizeFilterInvocationSecurityMetadataSource implements FilterIn
         SysMenuPermissionView query = new SysMenuPermissionView();
         query.setMenuUrl(requestUrl);
         List<SysMenuPermissionView> permissionList = sysMenuPermissionViewDao.findAll(Example.of(query));
-        if(permissionList == null || permissionList.size() == 0){
+        if(VerifyUtils.isEmpty(permissionList)){
             //没有匹配上的资源，都是登录访问
-            return SecurityConfig.createList("ROLE_LOGIN");
+        	if (!SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+        		return SecurityConfig.createList("ROLE_LOGIN");
+        	}
         }
         String[] attributes = new String[permissionList.size()];
         for(int i = 0; i < permissionList.size(); i++){
