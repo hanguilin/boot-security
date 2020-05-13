@@ -1,0 +1,125 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yl</groupId>
+	<artifactId>boot-security</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<fastjson.version>1.2.46</fastjson.version>
+	</properties>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.0.RELEASE</version>
+	</parent>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>2.1.9.RELEASE</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!--JSON -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.10.3</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
